@@ -11,7 +11,8 @@
 </head>
 <body>
 
-	<h1 class="text-primary" th:text="${titulo}"></h1>
+	<h1 style="text-align: center;" class="text-primary"
+		th:text="${titulo}"></h1>
 
 	<div>
 
@@ -22,13 +23,11 @@
 
 
 		<div class="form-group">
-			<div class="col-sm-6 ">La cantidad de digitos que escogiste:</div>
-			<div class="col-sm-6" th:text="${digito}">
-				</p>
-			</div>
 
-			<p>El número que debes adivinar:</p>
-			<p th:text="${adivinar}"></p>
+			<div class="col-sm-6 ">El número que debes adivinar:</div>
+			<div class="col-sm-6" th:text="${adivinar}"></div>
+
+
 
 			<form th:action="@{/form}" th:object="${partida}" method="post">
 				<div>
@@ -37,7 +36,7 @@
 					<div class="card col-md-8 mt-10 mx-auto">
 
 						<div class="card-body">
-							<div class="col-sm-12" >
+							<div class="col-sm-12">
 								<div style="float: left; margin-right: 20%; margin-left: 20px;">
 									<h2>Picas</h2>
 									<h3 th:text="*{picas}"></h3>
@@ -66,9 +65,12 @@
 							<div class="col-sm-12">
 								<input name="intento" id="intento" type="text"
 									th:field="*{acierto}" /> <input class="btn btn-primary"
-									type="submit" value="Enviar" />
+									type="submit" value="Enviar" onclick="gano()" />
 							</div>
 						</div>
+						<div th:if="${#gano != null}" th:text="SI SIRVE"
+							"gano()"
+							script="alert('Felicidades, has acertado!');"></div>
 					</div>
 
 				</div>
@@ -76,6 +78,19 @@
 			</form>
 
 		</div>
+
+		<script th:inline="javascript">
+
+/*<![CDATA[*/
+  var myval = /*[[${partida.victory}]]*/ "Test";
+  alert(myval);
+  if (myval==true) {
+	  alert("Felicitaciones, has acertado!");
+  }
+/*]]>*/
+ 
+
+</script>
 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

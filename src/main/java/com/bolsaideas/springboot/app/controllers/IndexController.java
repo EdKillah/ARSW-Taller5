@@ -1,7 +1,7 @@
 package com.bolsaideas.springboot.app.controllers;
 
 
-import javax.validation.Valid;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,8 +47,10 @@ public class IndexController {
 		model.addAttribute("adivinar", partida.getNumberToGuess());
 		
 		if(partida.isFinished()) {
-			if(partida.isVictory())
+			if(partida.isVictory()) {
+				model.addAttribute("gano", "Has ganado");
 				System.out.println("TERMINO EL JUEGO HAS ACERTADO");
+			}
 			else
 				System.out.println("TERMINO EL JUEGO. PERDISTE");
 			status.setComplete();
