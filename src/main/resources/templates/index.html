@@ -10,13 +10,15 @@
 </head>
 <body>
 
-	<h1 class="text-primary" style="text-align: center; margin-top:20px;" th:text="${titulo}"></h1>
+	<h1 class="text-primary" style="text-align: center; margin-top:5%;" th:text="${titulo}"></h1>
 
 	<form th:action="@{/form}" th:object="${partida}" method="post">
 		<div>
 
-			<h3 style="text-align: center;">Bienvenido, vamos a jugar Picas y Famas. Primero debes digitar
+			<h3 style="text-align: center;">Bienvenido, vamos a jugar Picas y Famas.<p/> Primero debes escribir
 				la cantidad de digitos que tendrá el número que vas a adivinar</h3>
+
+				
 
 			<div class="card col-md-4 mt-5 mx-auto">
 				<div class="card-header">
@@ -37,6 +39,21 @@
 
 	</form>
 
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var myval = /*[[${gano}]]*/"Test";
+		//alert(typeof(myval)+" "+myval);
+		if(myval != null){
+			if (myval == "true") {
+				console.log("Entrando en true");
+				alert("Felicitaciones, ganaste!");
+			}
+			else{
+				alert("Lo siento, perdiste.");
+			}
+		}
+		/*]]>*/
+	</script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -23,9 +23,15 @@ public class IndexController {
 	private Partida partida;
 	
 	@GetMapping({"/index","/",""})
-	public String index(Model model) {
+	public String index(@RequestParam(name="gano", required = false) String gano,Model model) {
 		partida = new Partida();
-		
+		if(gano!=null) {
+			System.out.println("Es diferente: "+gano);
+			model.addAttribute("gano", gano);
+		}
+		else {
+			System.out.println("ES NULO EL GANO "+gano);
+		}
 		model.addAttribute("titulo", "Picas & Famas");
 		model.addAttribute("partida", partida);
 		System.out.println("Partida getNumberToGuest: "+partida);
@@ -54,7 +60,7 @@ public class IndexController {
 			else
 				System.out.println("TERMINO EL JUEGO. PERDISTE");
 			status.setComplete();
-			return "redirect:index";
+			return "redirect:index?gano="+partida.isVictory();
 		}
 		else {
 			partida.setIntentos(partida.getIntentos()-1);
@@ -68,10 +74,7 @@ public class IndexController {
 	@PostMapping("/form")
 	public String leerDigito(@Validated Partida partida, BindingResult result, Model model,SessionStatus status) {//,@RequestParam(name="numero") String numero
 
-		if(result.hasErrors()) {
 
-			return "redirect:index";
-		}
 		this.numero = partida.getDigitos();
 		model.addAttribute("partida", partida);
 		return "redirect:form";

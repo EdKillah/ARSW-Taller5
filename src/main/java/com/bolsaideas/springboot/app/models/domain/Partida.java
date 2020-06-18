@@ -14,10 +14,11 @@ public class Partida {
 	private String numberToGuess;
 
 	@NotEmpty
-	@Size(max = 10, min = 1)
+	@Size(max = 9, min = 1)
 	private String acierto;
 
 	private boolean victory;
+	
 
 	private Integer range;
 
@@ -39,19 +40,23 @@ public class Partida {
 	public void prepareNumber() {
 
 		if (getNumberToGuess() == null) {
-			String rango = "";
+			String rango = "",minimo="";
 			//System.out.println("PREPAREnumber este es el digito: " + digitos);
 			for (int i = 0; i < getDigitos(); i++) {
 				rango += "9";
+				minimo+="1";
 			}
 
 			Integer maximoRango = Integer.parseInt(rango);
+			Integer minimoRango = Integer.parseInt(minimo);
 			Random r = new Random();
-
-			setNumberToGuess(r.nextInt(maximoRango) + 1 + "");
+			setNumberToGuess(r.nextInt((maximoRango-minimoRango) + 1) + minimoRango+ "");
 			setIntentos(5);
 		}
 	}
+	
+
+	
 
 	public boolean isFinished() {
 		boolean band = false;
@@ -72,9 +77,10 @@ public class Partida {
 		if (getAcierto() != null) {
 			setPicas(0);
 			setFamas(0);
-			evaluePicas();
-			evalueFamas();
-
+			if(getAcierto().length() == getNumberToGuess().length()) {
+				evaluePicas();
+				evalueFamas();				
+			}
 		}
 	}
 
@@ -163,5 +169,8 @@ public class Partida {
 	public void setVictory(boolean victory) {
 		this.victory = victory;
 	}
+
+	
+	
 
 }
