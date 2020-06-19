@@ -38,7 +38,7 @@ Una vez compliado  el repositorio completo se encuentra en posibilidad de ejecut
 ```
 java -cp target/classes edu.escuelaing.arsw.intro.app.tallernetworking.Http.HttpServer
 ```
-Ahora accediendo a tráves de su navegador web a **localhost:8080/index** o por medio del siguiente link de heroku donde se encuentra desplegado el programa. [Link]([https://picas-famas.herokuapp.com/index](https://picas-famas.herokuapp.com/index)) 
+Ahora accediendo a tráves de su navegador web a **localhost:8080/index** o por medio del siguiente link de heroku donde se encuentra desplegado el programa. [Link](https://picas-famas.herokuapp.com/index)
 
 ### Capturas del juego
 
